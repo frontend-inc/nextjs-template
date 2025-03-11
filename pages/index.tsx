@@ -1,9 +1,4 @@
 export default function Home() {
-  // This will intentionally throw an error
-  console.log("This should not appear in the browser console");
-  
-  // Force an error to be thrown - this is intentional
-  throw new Error("Intentionally thrown error from index page");
   
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8 pb-20 gap-16 sm:p-20">
