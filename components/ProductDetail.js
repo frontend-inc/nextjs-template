@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { cn } from '../lib/utils';
 
 const ProductDetail = ({
   product = {
@@ -7,10 +8,10 @@ const ProductDetail = ({
     price: '$299.99',
     description: 'This is a premium product with exceptional quality and features. The product comes with a warranty and excellent customer support. Perfect for those who value quality and durability.',
     images: [
-      '/product-1.jpg',
-      '/product-2.jpg',
-      '/product-3.jpg',
-      '/product-4.jpg',
+      'https://placehold.co/800x800',
+      'https://placehold.co/600x600',
+      'https://placehold.co/500x500',
+      'https://placehold.co/700x700',
     ],
     sku: 'PROD-12345',
     inStock: true,
@@ -48,44 +49,35 @@ const ProductDetail = ({
     <div className="w-full bg-white py-12">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Product Images */}
           <div className="space-y-4">
-            {/* Main Image */}
             <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
-              {/* Placeholder for main image */}
-              <i className="ri-image-line text-6xl text-gray-400"></i>
-              
-              {/* If you want to include an actual image */}
-              {/* <img 
+              <img 
                 src={product.images[selectedImage]} 
                 alt={product.title}
                 className="w-full h-full object-cover"
-              /> */}
+              />
             </div>
             
-            {/* Thumbnails */}
             <div className="grid grid-cols-4 gap-2">
               {product.images.map((image, index) => (
                 <button 
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`aspect-square bg-gray-100 rounded-md overflow-hidden flex items-center justify-center ${selectedImage === index ? 'ring-2 ring-black' : ''}`}
+                  className={cn(
+                    "aspect-square bg-gray-100 rounded-md overflow-hidden flex items-center justify-center",
+                    selectedImage === index && "ring-2 ring-black"
+                  )}
                 >
-                  {/* Placeholder for thumbnail */}
-                  <i className="ri-image-line text-xl text-gray-400"></i>
-                  
-                  {/* If you want to include actual thumbnails */}
-                  {/* <img 
+                  <img 
                     src={image} 
                     alt={`${product.title} - ${index + 1}`}
                     className="w-full h-full object-cover"
-                  /> */}
+                  />
                 </button>
               ))}
             </div>
           </div>
           
-          {/* Product Info */}
           <div>
             <h1 className="text-3xl font-bold text-black mb-2">{product.title}</h1>
             <p className="text-2xl font-bold text-black mb-4">{product.price}</p>
@@ -95,7 +87,6 @@ const ProductDetail = ({
               <p className="text-gray-600">{product.description}</p>
             </div>
             
-            {/* SKU and Availability */}
             <div className="mb-6">
               <div className="flex items-center text-sm text-gray-500 mb-2">
                 <span className="mr-1">SKU:</span>
@@ -111,7 +102,6 @@ const ProductDetail = ({
               </div>
             </div>
             
-            {/* Quantity Selector */}
             <div className="mb-6">
               <h2 className="text-lg font-medium text-black mb-2">Quantity</h2>
               <div className="flex">
@@ -138,11 +128,15 @@ const ProductDetail = ({
               </div>
             </div>
             
-            {/* Add to Cart Button */}
             <button 
               onClick={handleAddToCart}
               disabled={!product.inStock}
-              className={`w-full py-3 rounded-md font-medium ${product.inStock ? 'bg-black text-white hover:bg-gray-800' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
+              className={cn(
+                "w-full py-3 rounded-md font-medium",
+                product.inStock 
+                  ? "bg-black text-white hover:bg-gray-800" 
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+              )}
             >
               {product.inStock ? 'Add to Cart' : 'Out of Stock'}
             </button>

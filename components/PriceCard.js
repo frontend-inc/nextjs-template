@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from './ui/button';
+import { cn } from '../lib/utils';
 
 const PriceCard = ({
   title,
@@ -16,23 +17,24 @@ const PriceCard = ({
   className = '',
 }) => {
   return (
-    <div className={`relative flex h-full flex-col rounded-lg border ${recommended ? 'border-primary bg-primary/5' : 'border-gray-200 bg-white'} shadow-sm transition-all ${className}`}>
-      {/* Recommended badge */}
+    <div className={cn(
+      "relative flex h-full flex-col rounded-lg border shadow-sm transition-all",
+      recommended ? "border-primary bg-primary/5" : "border-gray-200 bg-white",
+      className
+    )}>
       {recommended && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-semibold uppercase text-primary-foreground">
           Recommended
         </div>
       )}
 
-      {/* Discount badge */}
       {discountBadge && (
         <div className="absolute -right-3 top-6 rotate-12 bg-green-500 px-4 py-1 text-xs font-bold uppercase text-white shadow-md">
           {discountBadge}
         </div>
       )}
 
-      {/* Card header */}
-      <div className={`p-6 ${recommended ? 'pt-8' : ''}`}>
+      <div className={cn("p-6", recommended && "pt-8")}>
         <h3 className="mb-1 text-2xl font-bold text-gray-900">{title}</h3>
         <div className="mb-4 flex items-baseline">
           <span className="text-4xl font-extrabold tracking-tight text-gray-900">
@@ -49,7 +51,6 @@ const PriceCard = ({
         )}
       </div>
 
-      {/* Features */}
       <div className="flex flex-grow flex-col p-6 pt-0">
         <ul className="mb-8 space-y-4 flex-grow">
           {features.map((feature, index) => (
@@ -64,7 +65,6 @@ const PriceCard = ({
           ))}
         </ul>
 
-        {/* CTA using shadcn Button */}
         {cta && (
           ctaHref ? (
             <Button

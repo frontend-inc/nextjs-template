@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { cn } from '../lib/utils';
 
 const PlaceCard = ({
   image,
@@ -18,7 +19,7 @@ const PlaceCard = ({
 }) => {
   const CardComponent = href ? Link : onClick ? 'button' : 'div';
   const cardProps = {
-    className: `overflow-hidden rounded-lg bg-white shadow transition-all hover:shadow-md ${className}`,
+    className: cn("overflow-hidden rounded-lg bg-white shadow transition-all hover:shadow-md", className),
     ...(href && { href }),
     ...(onClick && { onClick, type: 'button' }),
   };
@@ -88,7 +89,10 @@ const PlaceCard = ({
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className={`h-4 w-4 ${i < Math.floor(rating) ? 'text-yellow-400' : 'text-gray-300'}`}
+                    className={cn(
+                      "h-4 w-4",
+                      i < Math.floor(rating) ? "text-yellow-400" : "text-gray-300"
+                    )}
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"

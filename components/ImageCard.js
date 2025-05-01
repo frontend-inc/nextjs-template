@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '../lib/utils';
 
 const ImageCard = ({
   image = "/placeholder.jpg",
@@ -13,20 +14,17 @@ const ImageCard = ({
 }) => {
   const CardContent = () => (
     <>
-      <div className={`${aspectRatio} w-full relative overflow-hidden ${rounded}`}>
-        {/* Image placeholder */}
+      <div className={cn(aspectRatio, "w-full relative overflow-hidden", rounded)}>
         <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
           <i className="ri-image-line text-4xl text-gray-400"></i>
         </div>
         
-        {/* If you want to include an actual image */}
-        {/* <img 
+        <img 
           src={image} 
           alt={alt} 
           className="w-full h-full object-cover"
-        /> */}
+        />
         
-        {/* Overlay */}
         {overlay && (
           <div className="absolute inset-0 bg-black bg-opacity-30 transition-opacity duration-300 group-hover:bg-opacity-20">
             {(title || subtitle) && (
@@ -39,7 +37,6 @@ const ImageCard = ({
         )}
       </div>
       
-      {/* Caption (if not overlay and title/subtitle is provided) */}
       {!overlay && (title || subtitle) && (
         <div className="mt-2">
           {title && <h3 className="text-black font-medium">{title}</h3>}
@@ -49,7 +46,6 @@ const ImageCard = ({
     </>
   );
 
-  // Wrap with link if href is provided
   if (href) {
     return (
       <a 
@@ -62,7 +58,6 @@ const ImageCard = ({
     );
   }
 
-  // Wrap with button if onClick is provided but no href
   if (onClick && !href) {
     return (
       <button 
@@ -74,7 +69,6 @@ const ImageCard = ({
     );
   }
 
-  // Default: simple div wrapper
   return (
     <div className="group">
       <CardContent />

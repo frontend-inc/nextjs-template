@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { cn } from '../lib/utils';
 
 export default function Header({
   menuItems = [
@@ -11,7 +12,6 @@ export default function Header({
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
-  // Close mobile menu on window resize (if changing from mobile to desktop)
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -23,7 +23,6 @@ export default function Header({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   
-  // Prevent scrolling when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -41,14 +40,12 @@ export default function Header({
       <header className="sticky top-0 z-50 bg-white shadow-sm">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
           <div className="flex items-center justify-between">
-            {/* Logo */}
             <div className="flex-shrink-0">
               <a href="/" className="text-xl font-bold text-black">
                 Logo
               </a>
             </div>
             
-            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
               {menuItems.map((item, index) => (
                 <a 
@@ -62,7 +59,6 @@ export default function Header({
             </nav>
             
             
-            {/* Mobile Menu Button */}
             <div className="flex md:hidden">
               <button
                 type="button"
@@ -85,10 +81,12 @@ export default function Header({
           </div>
         </div>
 
-        {/* Mobile Menu, show/hide based on menu state */}
         <div 
-          className={`md:hidden ${mobileMenuOpen ? 'fixed inset-0 z-40 bg-white' : 'hidden'}`}
-          style={{ top: '68px' }} // Adjust based on header height
+          className={cn(
+            "md:hidden",
+            mobileMenuOpen ? "fixed inset-0 z-40 bg-white" : "hidden"
+          )}
+          style={{ top: '68px' }}
         >
           <div className="space-y-1 px-4 pb-10 pt-4">
             {menuItems.map((item, index) => (
@@ -105,7 +103,6 @@ export default function Header({
         </div>
       </header>
       
-      {/* Overlay when mobile menu is open */}
       {mobileMenuOpen && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-25 z-30 md:hidden"
