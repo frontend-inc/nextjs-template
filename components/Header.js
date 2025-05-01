@@ -44,7 +44,7 @@ export default function Header({
             {/* Logo */}
             <div className="flex-shrink-0">
               <a href="/" className="text-xl font-bold text-black">
-                Company
+                Logo
               </a>
             </div>
             
