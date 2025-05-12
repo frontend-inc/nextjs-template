@@ -12,6 +12,7 @@ export default function Document() {
       <body className="antialiased">
         <Main />
         <NextScript />
+        {/* DO NOT REMOVE */}
         <script src="/frontend.js"></script>
       </body>
     </Html>
