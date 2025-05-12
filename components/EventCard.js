@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 const EventCard = ({
@@ -42,12 +41,10 @@ const EventCard = ({
       <div className="relative">
         <div className="relative h-48 w-full overflow-hidden">
           {image ? (
-            <Image
+            <img
               src={image}
               alt={title}
-              className="object-cover"
-              fill
-              sizes="(max-width: 768px) 100vw, 33vw"
+              className="h-full w-full object-cover"
             />
           ) : (
             <div className="h-full w-full bg-gray-200" />
@@ -153,12 +150,10 @@ const EventCard = ({
                 {attendees.slice(0, 3).map((attendee, index) => (
                   <div key={index} className="relative h-8 w-8 overflow-hidden rounded-full border-2 border-white">
                     {typeof attendee === 'string' ? (
-                      <Image 
-                        src={attendee} 
-                        alt="Attendee" 
-                        className="object-cover"
-                        fill
-                        sizes="32px"
+                      <img
+                        src={attendee}
+                        alt="Attendee"
+                        className="h-full w-full object-cover"
                       />
                     ) : (
                       <div className="h-full w-full bg-gray-200" />

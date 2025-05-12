@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '../lib/utils';
 
@@ -29,12 +28,10 @@ const PlaceCard = ({
       <div className="relative">
         <div className="relative h-56 w-full overflow-hidden">
           {image ? (
-            <Image
+            <img
               src={image}
               alt={title}
-              className="object-cover"
-              fill
-              sizes="(max-width: 768px) 100vw, 33vw"
+              className="h-full w-full object-cover"
             />
           ) : (
             <div className="h-full w-full bg-gray-200" />

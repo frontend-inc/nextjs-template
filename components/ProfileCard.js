@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 const ProfileCard = ({
@@ -24,12 +23,10 @@ const ProfileCard = ({
     <CardComponent {...cardProps}>
       {image && (
         <div className="relative h-48 w-full overflow-hidden">
-          <Image
+          <img
             src={image}
             alt={`${name}'s background`}
-            className="object-cover"
-            fill
-            sizes="(max-width: 768px) 100vw, 33vw"
+            className="h-full w-full object-cover"
           />
         </div>
       )}
@@ -37,12 +34,10 @@ const ProfileCard = ({
         {avatar && (
           <div className={`${image ? '-mt-16 mb-4' : 'mb-4'} flex justify-center`}>
             <div className="relative h-24 w-24 overflow-hidden rounded-full border-4 border-white shadow">
-              <Image
+              <img
                 src={avatar}
                 alt={name}
-                className="object-cover"
-                fill
-                sizes="96px"
+                className="h-full w-full object-cover"
               />
             </div>
           </div>
